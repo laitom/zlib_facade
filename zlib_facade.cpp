@@ -11,9 +11,7 @@ auto zl::zlib_facade::compress(const std::string& fname) {
     std::unique_ptr<FILE, decltype(&fclose)> ifile(fopen(fname.c_str(), "rb"), &fclose);
     std::unique_ptr<FILE, decltype(&fclose)> ofile(fopen(temp.c_str(), "wb"), &fclose);
 
-    auto ret = deflate_file(ifile.get(), ofile.get(), Z_DEFAULT_COMPRESSION);
-
-    return ret;
+    return deflate_file(ifile.get(), ofile.get(), Z_DEFAULT_COMPRESSION);
 }
 
 auto zl::zlib_facade::decompress(const std::string& fname) {
@@ -23,9 +21,7 @@ auto zl::zlib_facade::decompress(const std::string& fname) {
     std::unique_ptr<FILE, decltype(&fclose)> ifile(fopen(fname.c_str(), "rb"), &fclose);
     std::unique_ptr<FILE, decltype(&fclose)> ofile(fopen(temp.c_str(), "wb"), &fclose);
 
-    auto ret = inflate_file(ifile.get(), ofile.get());
-
-    return ret;
+    return inflate_file(ifile.get(), ofile.get());
 }
 
 int zl::zlib_facade::deflate_file(FILE *source, FILE *dest, int level) {
