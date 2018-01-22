@@ -128,12 +128,3 @@ int zl::zlib_facade::inflate_file(FILE *source, FILE *dest) {
     static_cast<void>(inflateEnd(&strm));
     return ret == Z_STREAM_END ? Z_OK : Z_DATA_ERROR;
 }
-
-int main(int argc, char **argv) {
-    zl::zlib_facade zl(16384);
-
-    zl.compress("in.txt");
-    zl.decompress("in2.txt.zz");
-
-    return 0;
-}
